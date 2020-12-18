@@ -1,31 +1,41 @@
-package string_prgms;
-import java.util.*;
+package hackerank_prgms;
+import java.util.Scanner;
 public class Anagrams {
+	static boolean isAnagram(String a, String b) {
+        // Complete the function
+        
+        if(a.length() != b.length())
+         return false;
+         
+         a = a.toLowerCase();
+         b = b.toLowerCase();
+         
+         int sum =0;
+          
+        for(char c ='a'; c <= 'z'; c++)
+        {
+            for(int i = 0; i<a.length(); i++)
+            {
+                if(a.charAt(i) == c)
+                sum =sum+1;
+                if(b.charAt(i)== c)
+                sum = sum - 1;
+            }
+            if(sum != 0)
+            return false;
+        }
+        return true;
+        
+    }
 
 	public static void main(String[] args) {
-		Scanner sc=new Scanner(System.in);
-		System.out.println("enter 2 strings:");
-		String str1=sc.next();
-		String str2=sc.next();
-		String s1=str1.replaceAll("\\s","");
-		String s2=str2.replaceAll("\\s","");
-		boolean status=true;
-		if(s1.length() != s2.length())
-		{
-			status=false;
-		}
-		else
-		{
-			char[] Arrays1=s1.toLowerCase().toCharArray();
-			char[] Arrays2=s2.toLowerCase().toCharArray();
-			Arrays.sort(Arrays1);
-			Arrays.sort(Arrays2);
-			status=Arrays.equals(Arrays1, Arrays2);
-		}
-		if(status)
-			System.out.println(s1+" and "+s2+" are anagrams");
-		else
-			System.out.println(s1+" and "+s2+" are not anagrams");
+		Scanner scan = new Scanner(System.in);
+        String a = scan.next();
+        String b = scan.next();
+        scan.close();
+        boolean ret = isAnagram(a, b);
+        System.out.println( (ret) ? "Anagrams" : "Not Anagrams" );
+
 	}
 
 }
